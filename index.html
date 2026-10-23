@@ -4,191 +4,29 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Wedding Invitation</title>
-  <meta name="description" content="You are invited to our wedding. Scroll to begin.">
   <meta name="theme-color" content="#fbf7ef">
-  <!-- Relative paths only, so the site works from any GitHub Pages subpath -->
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23fbf7ef' stroke='%23a98445' stroke-width='3'/%3E%3Ccircle cx='25' cy='32' r='11' fill='none' stroke='%23a98445' stroke-width='3'/%3E%3Ccircle cx='39' cy='32' r='11' fill='none' stroke='%23a98445' stroke-width='3'/%3E%3C/svg%3E">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='25' cy='32' r='11' fill='none' stroke='%23a98445' stroke-width='3'/%3E%3Ccircle cx='39' cy='32' r='11' fill='none' stroke='%23a98445' stroke-width='3'/%3E%3C/svg%3E">
   <link rel="preload" as="image" href="frames/ezgif-frame-001.jpg">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&family=Pinyon+Script&display=swap">
   <link rel="stylesheet" href="css/styles.css">
-  <script>document.documentElement.classList.add('js');</script>
 </head>
 <body class="loading">
-
-  <a class="skip-link" href="#intro">Skip to invitation details</a>
-
-  <!-- ============ LOADING SCREEN ============ -->
   <div id="loader" class="loader" role="status" aria-live="polite">
     <div class="loader__inner">
-      <svg class="ornament" viewBox="0 0 120 24" aria-hidden="true"><path d="M2 12h42M76 12h42" /><circle cx="60" cy="12" r="4"/><path d="M52 12c4-8 12-8 16 0M52 12c4 8 12 8 16 0" fill="none"/></svg>
-      <p class="loader__eyebrow">Preparing your invitation</p>
       <p class="loader__pct" id="loaderPct">0%</p>
       <div class="loader__bar" aria-hidden="true"><span id="loaderBar"></span></div>
       <p class="loader__note" id="loaderNote">&nbsp;</p>
-      <button type="button" class="btn btn--ghost loader__enter" id="loaderEnter" hidden>Enter now</button>
+      <button type="button" class="enter" id="loaderEnter" hidden>Enter now</button>
     </div>
   </div>
 
-  <!-- ============ TOP NAV (appears after the animation) ============ -->
-  <header class="nav" id="nav" aria-label="Site">
-    <a class="nav__brand" href="#top" data-bind="couple.initials">[A &amp; B]</a>
-    <nav class="nav__links">
-      <a href="#details">Details</a>
-      <a href="#schedule">Schedule</a>
-      <a href="#rsvp">RSVP</a>
-    </nav>
-  </header>
-
-  <!-- ============ SCROLL-DRIVEN ANIMATION ============ -->
-  <main id="top">
-    <section class="track" id="track" aria-label="Invitation animation">
-      <div class="stage" id="stage">
-        <canvas id="bgCanvas" class="stage__bg" aria-hidden="true"></canvas>
-        <canvas id="canvas" class="stage__canvas" role="img" aria-label="A cinematic wedding invitation video that plays as you scroll"></canvas>
-
-        <!-- Opening screen -->
-        <div class="open" id="open">
-          <p class="open__eyebrow">Wedding Invitation</p>
-          <button type="button" class="cue" id="cue" aria-label="Scroll to begin">
-            <span class="cue__text">Scroll to Begin</span>
-            <span class="cue__line" aria-hidden="true"></span>
-          </button>
-        </div>
-
-        <!-- Shown once the animation finishes -->
-        <button type="button" class="cue cue--end" id="cueEnd" aria-label="Continue to invitation details">
-          <span class="cue__text">Continue</span>
-          <span class="cue__line" aria-hidden="true"></span>
-        </button>
-
-        <button type="button" class="skip" id="skip">Skip animation</button>
-        <div class="meter" aria-hidden="true"><span id="meter"></span></div>
-
-        <noscript><p class="noscript">Please enable JavaScript to view the scroll animation. The invitation details are below.</p></noscript>
-      </div>
-    </section>
-
-    <!-- ============ INVITATION CONTENT ============ -->
-    <section class="sec sec--intro" id="intro">
-      <div class="wrap wrap--narrow reveal">
-        <p class="eyebrow" data-bind="couple.preface">Together with their families</p>
-        <h1 class="names">
-          <span data-bind="couple.partnerOne">[Partner One]</span>
-          <span class="names__amp" aria-hidden="true">&amp;</span><span class="sr-only"> and </span>
-          <span data-bind="couple.partnerTwo">[Partner Two]</span>
-        </h1>
-        <p class="lead" data-bind="couple.invitationLine">request the pleasure of your company</p>
-        <svg class="ornament ornament--lg" viewBox="0 0 120 24" aria-hidden="true"><path d="M2 12h42M76 12h42" /><circle cx="60" cy="12" r="4"/><path d="M52 12c4-8 12-8 16 0M52 12c4 8 12 8 16 0" fill="none"/></svg>
-        <p class="body" data-bind="welcomeMessage">[Welcome message]</p>
-      </div>
-    </section>
-
-    <section class="sec sec--paper" id="details">
-      <div class="wrap">
-        <header class="sec__head reveal">
-          <p class="eyebrow">Save the Date</p>
-          <h2 class="title">The Details</h2>
-        </header>
-
-        <div class="countdown reveal" id="countdown" hidden aria-live="off">
-          <div><b id="cdD">0</b><span>Days</span></div>
-          <div><b id="cdH">0</b><span>Hours</span></div>
-          <div><b id="cdM">0</b><span>Minutes</span></div>
-          <div><b id="cdS">0</b><span>Seconds</span></div>
-        </div>
-
-        <div class="cards">
-          <article class="card reveal">
-            <h3 class="card__label">When</h3>
-            <p class="card__main" data-bind="date.display">[Wedding Date]</p>
-            <p class="card__sub" data-bind="date.time">[Start Time]</p>
-            <button type="button" class="btn btn--ghost" id="calBtn" hidden>Add to Calendar</button>
-          </article>
-          <article class="card reveal">
-            <h3 class="card__label">Where</h3>
-            <p class="card__main" data-bind="venue.name">[Venue Name]</p>
-            <p class="card__sub" data-bind="venue.address">[Address]</p>
-            <a class="btn btn--ghost" id="mapBtn" href="#" target="_blank" rel="noopener noreferrer" hidden>View Map</a>
-          </article>
-          <article class="card reveal" id="noteCard">
-            <h3 class="card__label">Good to Know</h3>
-            <p class="card__main card__main--sm" data-bind="venue.note">[Note]</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="sec" id="schedule">
-      <div class="wrap wrap--narrow">
-        <header class="sec__head reveal">
-          <p class="eyebrow">The Celebration</p>
-          <h2 class="title">Event Schedule</h2>
-        </header>
-        <ol class="timeline" id="timeline"></ol>
-      </div>
-    </section>
-
-    <section class="sec sec--paper" id="rsvp">
-      <div class="wrap wrap--narrow">
-        <header class="sec__head reveal">
-          <p class="eyebrow">Kindly Reply</p>
-          <h2 class="title">RSVP</h2>
-          <p class="body" data-bind="rsvp.deadline">[RSVP Deadline]</p>
-        </header>
-
-        <form class="form reveal" id="rsvpForm" novalidate>
-          <div class="field">
-            <label for="rName">Your name(s)</label>
-            <input id="rName" name="name" type="text" autocomplete="name" required placeholder="Full name(s) as on the invitation">
-          </div>
-          <div class="field">
-            <label for="rEmail">Email <span class="opt">(optional)</span></label>
-            <input id="rEmail" name="email" type="email" autocomplete="email" placeholder="So we can reach you">
-          </div>
-
-          <fieldset class="field field--choice">
-            <legend>Will you attend?</legend>
-            <label class="choice"><input type="radio" name="attend" value="Joyfully accepts" required><span>Joyfully accept</span></label>
-            <label class="choice"><input type="radio" name="attend" value="Regretfully declines"><span>Regretfully decline</span></label>
-          </fieldset>
-
-          <div class="field" id="guestsField">
-            <label for="rGuests">Number of guests (including you)</label>
-            <select id="rGuests" name="guests"></select>
-          </div>
-          <div class="field">
-            <label for="rNotes">Message or dietary needs <span class="opt">(optional)</span></label>
-            <textarea id="rNotes" name="notes" rows="4" placeholder="Allergies, song requests, a note for the couple…"></textarea>
-          </div>
-
-          <p class="form__status" id="rsvpStatus" role="alert" hidden></p>
-
-          <div class="form__actions">
-            <button type="submit" class="btn">Send RSVP by Email</button>
-            <button type="button" class="btn btn--ghost" id="copyBtn">Copy Reply Text</button>
-          </div>
-          <p class="form__fine">
-            This website has no server, so replies are not stored here. “Send RSVP by Email” opens your email app with your reply
-            already written — please press <em>Send</em> there. Prefer another way? Copy the text and send it by message.
-          </p>
-        </form>
-      </div>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <div class="wrap wrap--narrow">
-      <svg class="ornament ornament--lg" viewBox="0 0 120 24" aria-hidden="true"><path d="M2 12h42M76 12h42" /><circle cx="60" cy="12" r="4"/><path d="M52 12c4-8 12-8 16 0M52 12c4 8 12 8 16 0" fill="none"/></svg>
-      <p class="footer__msg" data-bind="footer.closingMessage">[Closing message]</p>
-      <p class="footer__names"><span data-bind="couple.partnerOne">[Partner One]</span> <i>&amp;</i> <span data-bind="couple.partnerTwo">[Partner Two]</span></p>
-      <p class="footer__tag" id="hashtag" hidden data-bind="footer.hashtag"></p>
-      <a class="footer__top" href="#top">Back to the beginning ↑</a>
+  <main class="track" id="track">
+    <div class="stage" id="stage">
+      <canvas id="bgCanvas" class="stage__bg" aria-hidden="true"></canvas>
+      <canvas id="canvas" class="stage__canvas" role="img" aria-label="Wedding invitation video that plays as you scroll"></canvas>
+      <div class="cue" id="cue" aria-hidden="true"><span>Scroll to Begin</span><i></i></div>
     </div>
-  </footer>
-
-  <script src="js/config.js"></script>
+  </main>
+  <noscript><p style="text-align:center;padding:20px">Please enable JavaScript to view this invitation.</p></noscript>
   <script src="js/main.js"></script>
 </body>
 </html>
